@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using SistemaTransporteInterurbano.Mobile.Services;// línea para registrar el servicio ApiService
 
 namespace SistemaTransporteInterurbano.Mobile
 {
@@ -18,7 +19,7 @@ namespace SistemaTransporteInterurbano.Mobile
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
+            builder.Services.AddSingleton<ApiService>();// revisar
             return builder.Build();
         }
     }
