@@ -40,7 +40,7 @@ public class ApiService
             Clave = clave
         };
 
-        var response = await _httpClient.PostAsJsonAsync("/api/auth/login", request);
+        var response = await _httpClient.PostAsJsonAsync("/api/autenticacion/iniciar-sesion", request);
 
         if (!response.IsSuccessStatusCode)
         {
