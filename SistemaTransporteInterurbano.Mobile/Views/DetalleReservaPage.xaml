@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SistemaTransporteInterurbano.Mobile.Views.DetalleReservaPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Detalle del Viaje">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="18">
+
+            <Label Text="Detalle del Viaje"
+                   FontSize="26"
+                   FontAttributes="Bold" />
+
+            <Frame Padding="18"
+                   CornerRadius="16"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="Información del viaje"
+                           FontSize="20"
+                           FontAttributes="Bold" />
+
+                    <Label x:Name="RutaLabel" />
+                    <Label x:Name="PlacaLabel" />
+                    <Label x:Name="ChoferLabel" />
+                    <Label x:Name="FechaSalidaLabel" />
+                    <Label x:Name="FechaLlegadaLabel" />
+                    <Label x:Name="AsientoLabel" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Padding="18"
+                   CornerRadius="16"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="Resumen de Pago"
+                           FontSize="20"
+                           FontAttributes="Bold" />
+
+                    <Label x:Name="PrecioBaseLabel" />
+                    <Label x:Name="MontoPagadoLabel"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

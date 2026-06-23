@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SistemaTransporteInterurbano.Mobile.Views.MisReservasPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Mis Reservas">
+
+    <Grid Padding="20" RowDefinitions="Auto,*">
+
+        <VerticalStackLayout Spacing="4">
+            <Label Text="Mis Reservas"
+                   FontSize="26"
+                   FontAttributes="Bold" />
+
+            <Label Text="Consulta tus viajes reservados"
+                   FontSize="15"
+                   TextColor="Gray" />
+        </VerticalStackLayout>
+
+        <CollectionView
+            x:Name="ReservasCollection"
+            Grid.Row="1"
+            Margin="0,20,0,0"
+            SelectionMode="Single"
+            SelectionChanged="OnReservaSeleccionada">
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout Padding="20" Spacing="10">
+                    <Label Text="No tienes reservas registradas."
+                           HorizontalTextAlignment="Center"
+                           TextColor="Gray" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="16"
+                           Margin="0,0,0,12"
+                           CornerRadius="16"
+                           HasShadow="True">
+
+                        <VerticalStackLayout Spacing="6">
+
+                            <Label Text="{Binding Ruta}"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+
+                            <Label Text="{Binding Estado, StringFormat='Estado: {0}'}"
+                                   FontSize="14"
+                                   TextColor="Gray" />
+
+                            <Label Text="{Binding NumeroAsiento, StringFormat='Asiento: {0}'}"
+                                   FontSize="14" />
+
+                            <Label Text="{Binding FechaSalida, StringFormat='Salida: {0:dd/MM/yyyy HH:mm}'}"
+                                   FontSize="14" />
+
+                        </VerticalStackLayout>
+
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>
