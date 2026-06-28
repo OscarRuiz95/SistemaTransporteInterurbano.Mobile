@@ -11,7 +11,8 @@ public class ApiService
     private const string ApiKey = "STI-2024-SECURE-KEY";// Reemplaza con tu clave real
 
     // Para Windows local:
-    private const string BaseUrl = "https://localhost:7230";// revisar
+    //private const string BaseUrl = "https://localhost:7230";// revisar
+    private const string BaseUrl = "https://sistematransporteinterurbano.azurewebsites.net";
 
     // Si luego pruebas en Android Emulator, cambia por:
     // private const string BaseUrl = "https://10.0.2.2:7230";// revisar
