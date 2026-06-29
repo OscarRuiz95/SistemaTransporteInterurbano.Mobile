@@ -38,13 +38,23 @@ public partial class LoginPage : ContentPage
                 return;
             }
 
-            Preferences.Set("UsuarioId", usuario.UsuarioId);
-            Preferences.Set("PasajeroId", usuario.PasajeroId);
-            Preferences.Set("NombreUsuario", usuario.NombreUsuario ?? "");
-            Preferences.Set("NombreCompleto", usuario.NombreCompleto ?? "");
+            var pasajero = await _apiService.ObtenerPasajeroPorUsuarioAsync(usuario.UsuarioId);
 
-            var nombreMostrar = !string.IsNullOrWhiteSpace(usuario.NombreCompleto)
-                ? usuario.NombreCompleto
+            if (pasajero == null)
+            {
+                MostrarError("El usuario no tiene un perfil de pasajero asociado.");
+                return;
+            }
+
+            var nombreCompleto = $"{pasajero.Nombre} {pasajero.Apellidos}".Trim();
+
+            Preferences.Set("UsuarioId", usuario.UsuarioId);
+            Preferences.Set("PasajeroId", pasajero.PasajeroId);
+            Preferences.Set("NombreUsuario", usuario.NombreUsuario ?? "");
+            Preferences.Set("NombreCompleto", nombreCompleto);
+
+            var nombreMostrar = !string.IsNullOrWhiteSpace(nombreCompleto)
+                ? nombreCompleto
                 : usuario.NombreUsuario;
 
             await DisplayAlert(

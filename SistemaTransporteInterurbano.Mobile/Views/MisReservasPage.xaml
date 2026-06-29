@@ -5,6 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Mis Reservas">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cerrar sesión"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="OnCerrarSesionClicked" />
+    </ContentPage.ToolbarItems>
+
     <Grid Padding="20" RowDefinitions="Auto,*">
 
         <VerticalStackLayout Spacing="4">

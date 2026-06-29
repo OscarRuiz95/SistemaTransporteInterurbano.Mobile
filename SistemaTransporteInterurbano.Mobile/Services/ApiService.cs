@@ -78,20 +78,37 @@ public class ApiService
             throw new Exception("No se pudo iniciar sesión. Verifique sus credenciales.");
 
         using var doc = JsonDocument.Parse(json);
-
         var root = doc.RootElement;
 
         if (root.TryGetProperty("datos", out var datos))
         {
             return JsonSerializer.Deserialize<LoginResponse>(
                 datos.GetRawText(),
-                new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
         throw new Exception("La respuesta de la API no contiene datos del usuario.");
+    }
+
+    public async Task<PasajeroDto?> ObtenerPasajeroPorUsuarioAsync(int usuarioId)
+    {
+        var response = await _httpClient.GetAsync($"/api/pasajeros/por-usuario/{usuarioId}");
+
+        if (!response.IsSuccessStatusCode)
+            throw new Exception("No se encontró el perfil de pasajero.");
+
+        var json = await response.Content.ReadAsStringAsync();
+        using var doc = JsonDocument.Parse(json);
+        var root = doc.RootElement;
+
+        if (root.TryGetProperty("datos", out var datos))
+        {
+            return JsonSerializer.Deserialize<PasajeroDto>(
+                datos.GetRawText(),
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        }
+
+        throw new Exception("No se pudo obtener el perfil de pasajero.");
     }
 
     public async Task<List<ReservaDto>> ObtenerReservasAsync(int pasajeroId)
@@ -101,9 +118,19 @@ public class ApiService
         if (!response.IsSuccessStatusCode)
             throw new Exception("No se pudieron cargar las reservas.");
 
-        var reservas = await response.Content.ReadFromJsonAsync<List<ReservaDto>>();
+        var json = await response.Content.ReadAsStringAsync();
+        using var doc = JsonDocument.Parse(json);
+        var root = doc.RootElement;
 
-        return reservas ?? new List<ReservaDto>();
+        if (root.TryGetProperty("datos", out var datos))
+        {
+            return JsonSerializer.Deserialize<List<ReservaDto>>(
+                datos.GetRawText(),
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
+                ?? new List<ReservaDto>();
+        }
+
+        return new List<ReservaDto>();
     }
 
     public async Task<DetalleViajeDto?> ObtenerDetalleAsync(int viajeId, int pasajeroId)
@@ -113,6 +140,17 @@ public class ApiService
         if (!response.IsSuccessStatusCode)
             throw new Exception("No se pudo cargar el detalle del viaje.");
 
-        return await response.Content.ReadFromJsonAsync<DetalleViajeDto>();
+        var json = await response.Content.ReadAsStringAsync();
+        using var doc = JsonDocument.Parse(json);
+        var root = doc.RootElement;
+
+        if (root.TryGetProperty("datos", out var datos))
+        {
+            return JsonSerializer.Deserialize<DetalleViajeDto>(
+                datos.GetRawText(),
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        }
+
+        return null;
     }
 }
