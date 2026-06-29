@@ -32,18 +32,27 @@ public partial class LoginPage : ContentPage
 
             var usuario = await _apiService.LoginAsync(nombreUsuario, clave);
 
+            if (usuario == null)
+            {
+                MostrarError("No se pudo iniciar sesión.");
+                return;
+            }
+
             Preferences.Set("UsuarioId", usuario.UsuarioId);
             Preferences.Set("PasajeroId", usuario.PasajeroId);
-            Preferences.Set("NombreUsuario", usuario.NombreUsuario);
-            Preferences.Set("NombreCompleto", usuario.NombreCompleto);
+            Preferences.Set("NombreUsuario", usuario.NombreUsuario ?? "");
+            Preferences.Set("NombreCompleto", usuario.NombreCompleto ?? "");
+
+            var nombreMostrar = !string.IsNullOrWhiteSpace(usuario.NombreCompleto)
+                ? usuario.NombreCompleto
+                : usuario.NombreUsuario;
 
             await DisplayAlert(
                 "Bienvenido",
-                $"Hola, {usuario.NombreCompleto}",
+                $"Hola, {nombreMostrar}",
                 "Continuar");
 
-            // Luego aquí navegaremos a MisReservasPage.
-            // Por ahora solo confirmamos que el login funciona.
+            await Shell.Current.GoToAsync("//MisReservasPage");
         }
         catch (Exception ex)
         {

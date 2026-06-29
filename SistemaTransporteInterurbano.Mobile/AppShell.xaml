@@ -11,4 +11,9 @@
         ContentTemplate="{DataTemplate views:LoginPage}"
         Route="LoginPage" />
 
+    <ShellContent
+        Title="Mis Reservas"
+        ContentTemplate="{DataTemplate views:MisReservasPage}"
+        Route="MisReservasPage" />
+
 </Shell>

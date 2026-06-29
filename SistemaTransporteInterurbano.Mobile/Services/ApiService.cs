@@ -10,13 +10,10 @@ public class ApiService
 
     private const string ApiKey = "STI-2024-SECURE-KEY";// Reemplaza con tu clave real
 
-    // Para Windows local:
-    //private const string BaseUrl = "https://localhost:7230";// revisar
-    private const string BaseUrl = "https://sistematransporteinterurbano.azurewebsites.net";
+   
+    private const string BaseUrl = "https://sistematransporteinterurbano-api-hce6gjb9fha7erex.westus2-01.azurewebsites.net";
 
-    // Si luego pruebas en Android Emulator, cambia por:
-    // private const string BaseUrl = "https://10.0.2.2:7230";// revisar
-
+    
     public ApiService()
     {
         var handler = new HttpClientHandler
@@ -33,7 +30,7 @@ public class ApiService
         _httpClient.DefaultRequestHeaders.Add("X-API-KEY", ApiKey);
     }
 
-    public async Task<LoginResponse?> LoginAsync(string nombreUsuario, string clave)
+    /*public async Task<LoginResponse?> LoginAsync(string nombreUsuario, string clave)
     {
         var request = new LoginRequest
         {
@@ -63,6 +60,38 @@ public class ApiService
         }
 
         return await response.Content.ReadFromJsonAsync<LoginResponse>();
+    }*/
+
+    public async Task<LoginResponse?> LoginAsync(string nombreUsuario, string clave)
+    {
+        var request = new LoginRequest
+        {
+            NombreUsuario = nombreUsuario,
+            Clave = clave
+        };
+
+        var response = await _httpClient.PostAsJsonAsync("/api/autenticacion/iniciar-sesion", request);
+
+        var json = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
+            throw new Exception("No se pudo iniciar sesión. Verifique sus credenciales.");
+
+        using var doc = JsonDocument.Parse(json);
+
+        var root = doc.RootElement;
+
+        if (root.TryGetProperty("datos", out var datos))
+        {
+            return JsonSerializer.Deserialize<LoginResponse>(
+                datos.GetRawText(),
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+        }
+
+        throw new Exception("La respuesta de la API no contiene datos del usuario.");
     }
 
     public async Task<List<ReservaDto>> ObtenerReservasAsync(int pasajeroId)
