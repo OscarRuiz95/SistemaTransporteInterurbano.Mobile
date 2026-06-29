@@ -33,7 +33,11 @@ public partial class MisReservasPage : ContentPage
 
             if (pasajeroId == 0)
             {
-                await DisplayAlert("Sesión inválida", "Debe iniciar sesión nuevamente.", "Aceptar");
+                await DisplayAlert(
+                    "Sesión inválida",
+                    "Debe iniciar sesión nuevamente.",
+                    "Aceptar");
+
                 await Shell.Current.GoToAsync("//LoginPage");
                 return;
             }
@@ -41,7 +45,9 @@ public partial class MisReservasPage : ContentPage
             var reservas = await _apiService.ObtenerReservasAsync(pasajeroId);
 
             foreach (var reserva in reservas)
+            {
                 _reservas.Add(reserva);
+            }
         }
         catch (Exception ex)
         {
@@ -59,5 +65,21 @@ public partial class MisReservasPage : ContentPage
         ReservasCollection.SelectedItem = null;
 
         await Navigation.PushAsync(new DetalleReservaPage(reserva));
+    }
+
+    private async void OnCerrarSesionClicked(object sender, EventArgs e)
+    {
+        bool confirmar = await DisplayAlert(
+            "Cerrar sesión",
+            "¿Desea cerrar la sesión actual?",
+            "Sí",
+            "No");
+
+        if (!confirmar)
+            return;
+
+        Preferences.Clear();
+
+        await Shell.Current.GoToAsync("//LoginPage");
     }
 }

@@ -5,58 +5,140 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Mis Reservas">
 
-    <Grid Padding="20" RowDefinitions="Auto,*">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#0F172A" Offset="0.0"/>
+            <GradientStop Color="#1E3A8A" Offset="0.55"/>
+            <GradientStop Color="#0891B2" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
-        <VerticalStackLayout Spacing="4">
-            <Label Text="Mis Reservas"
-                   FontSize="26"
-                   FontAttributes="Bold" />
+    <Grid Padding="20"
+          RowDefinitions="Auto,*">
 
-            <Label Text="Consulta tus viajes reservados"
-                   FontSize="15"
-                   TextColor="Gray" />
-        </VerticalStackLayout>
+        <Grid
+            ColumnDefinitions="*,Auto"
+            ColumnSpacing="12">
+
+            <VerticalStackLayout Spacing="4">
+
+                <Label
+                    Text="Mis Reservas"
+                    FontSize="28"
+                    FontAttributes="Bold"
+                    TextColor="White"/>
+
+                <Label
+                    Text="Consulta tus viajes reservados"
+                    FontSize="15"
+                    TextColor="#CCFFFFFF"/>
+
+            </VerticalStackLayout>
+
+            <Button
+                Grid.Column="1"
+                Text="Salir"
+                BackgroundColor="#EF4444"
+                TextColor="White"
+                CornerRadius="22"
+                Padding="14,8"
+                VerticalOptions="Center"
+                Clicked="OnCerrarSesionClicked"/>
+
+        </Grid>
 
         <CollectionView
             x:Name="ReservasCollection"
             Grid.Row="1"
-            Margin="0,20,0,0"
+            Margin="0,22,0,0"
             SelectionMode="Single"
             SelectionChanged="OnReservaSeleccionada">
 
             <CollectionView.EmptyView>
-                <Label Text="No tienes reservas registradas."
-                       HorizontalTextAlignment="Center"
-                       TextColor="Gray" />
+
+                <Border
+                    Padding="22"
+                    BackgroundColor="#22FFFFFF"
+                    Stroke="#44FFFFFF"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20">
+
+                    <VerticalStackLayout Spacing="8">
+
+                        <Label
+                            Text="🚌"
+                            FontSize="36"
+                            HorizontalTextAlignment="Center"/>
+
+                        <Label
+                            Text="No tienes reservas registradas."
+                            HorizontalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            TextColor="White"/>
+
+                        <Label
+                            Text="Cuando tengas reservas aparecerán aquí."
+                            HorizontalTextAlignment="Center"
+                            FontSize="13"
+                            TextColor="#CCFFFFFF"/>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
             </CollectionView.EmptyView>
 
             <CollectionView.ItemTemplate>
+
                 <DataTemplate>
-                    <Frame Padding="16"
-                           Margin="0,0,0,12"
-                           CornerRadius="16"
-                           HasShadow="True">
 
-                        <VerticalStackLayout Spacing="6">
-                            <Label Text="{Binding RutaTexto}"
-                                   FontSize="18"
-                                   FontAttributes="Bold" />
+                    <Border
+                        Margin="0,0,0,14"
+                        Padding="16"
+                        BackgroundColor="#22FFFFFF"
+                        Stroke="#44FFFFFF"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 20">
 
-                            <Label Text="{Binding EstadoTexto, StringFormat='Estado: {0}'}"
-                                   FontSize="14"
-                                   TextColor="Gray" />
+                        <VerticalStackLayout Spacing="8">
 
-                            <Label Text="{Binding NumeroAsiento, StringFormat='Asiento: {0}'}"
-                                   FontSize="14" />
+                            <Label
+                                Text="{Binding RutaTexto}"
+                                FontSize="19"
+                                FontAttributes="Bold"
+                                TextColor="White"/>
 
-                            <Label Text="{Binding FechaSalidaTexto, StringFormat='Salida: {0:dd/MM/yyyy HH:mm}'}"
-                                   FontSize="14" />
+                            <Label
+                                Text="{Binding EstadoTexto, StringFormat='Estado: {0}'}"
+                                FontSize="14"
+                                TextColor="#CCFFFFFF"/>
+
+                            <Label
+                                Text="{Binding NumeroAsiento, StringFormat='Asiento: {0}'}"
+                                FontSize="14"
+                                TextColor="White"/>
+
+                            <Label
+                                Text="{Binding FechaSalidaTexto, StringFormat='Salida: {0:dd/MM/yyyy HH:mm}'}"
+                                FontSize="14"
+                                TextColor="#CCFFFFFF"/>
+
+                            <Label
+                                Text="Toca para ver detalle"
+                                HorizontalTextAlignment="End"
+                                FontSize="12"
+                                TextColor="#7DD3FC"/>
+
                         </VerticalStackLayout>
 
-                    </Frame>
+                    </Border>
+
                 </DataTemplate>
+
             </CollectionView.ItemTemplate>
+
         </CollectionView>
 
     </Grid>
+
 </ContentPage>

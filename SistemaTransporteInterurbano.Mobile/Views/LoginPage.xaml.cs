@@ -1,4 +1,5 @@
 ﻿using SistemaTransporteInterurbano.Mobile.Services;
+using SistemaTransporteInterurbano.Mobile.Views;
 
 namespace SistemaTransporteInterurbano.Mobile.Views;
 
@@ -62,7 +63,7 @@ public partial class LoginPage : ContentPage
                 $"Hola, {nombreMostrar}",
                 "Continuar");
 
-            await Shell.Current.GoToAsync("//MisReservasPage");
+            await Navigation.PushAsync(new MisReservasPage());
         }
         catch (Exception ex)
         {

@@ -5,62 +5,133 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Iniciar sesión">
 
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#0F172A" Offset="0.0" />
+            <GradientStop Color="#1E3A8A" Offset="0.55" />
+            <GradientStop Color="#0891B2" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
     <ScrollView>
-        <VerticalStackLayout Padding="28" Spacing="20">
+        <Grid Padding="24">
+            <VerticalStackLayout
+                VerticalOptions="Center"
+                Spacing="22">
 
-            <Label
-                Text="Sistema de Transporte Interurbano"
-                FontSize="26"
-                FontAttributes="Bold"
-                HorizontalTextAlignment="Center" />
+                <Border
+                    Stroke="#55FFFFFF"
+                    StrokeThickness="1"
+                    BackgroundColor="#22FFFFFF"
+                    Padding="24"
+                    StrokeShape="RoundRectangle 28">
 
-            <Label
-                Text="Aplicación móvil para pasajeros"
-                FontSize="16"
-                TextColor="Gray"
-                HorizontalTextAlignment="Center" />
+                    <VerticalStackLayout Spacing="18">
 
-            <Frame
-                Padding="20"
-                CornerRadius="18"
-                HasShadow="True">
+                        <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                            <Border
+                                WidthRequest="72"
+                                HeightRequest="72"
+                                BackgroundColor="#330DCAF0"
+                                Stroke="#880DCAF0"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 36">
 
-                <VerticalStackLayout Spacing="16">
+                                <Label
+                                    Text="🚌"
+                                    FontSize="34"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+                            </Border>
 
-                    <Label
-                        Text="Iniciar sesión"
-                        FontSize="22"
-                        FontAttributes="Bold" />
+                            <Label
+                                Text="Iniciar Sesión"
+                                FontSize="28"
+                                FontAttributes="Bold"
+                                TextColor="White"
+                                HorizontalTextAlignment="Center" />
 
-                    <Entry
-                        x:Name="NombreUsuarioEntry"
-                        Placeholder="Nombre de usuario"
-                        Keyboard="Text" />
+                            <Label
+                                Text="Sistema de Transporte Interurbano"
+                                FontSize="14"
+                                TextColor="#CCFFFFFF"
+                                HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
 
-                    <Entry
-                        x:Name="ClaveEntry"
-                        Placeholder="Clave"
-                        IsPassword="True" />
+                        <VerticalStackLayout Spacing="6">
+                            <Label
+                                Text="Usuario"
+                                FontSize="13"
+                                FontAttributes="Bold"
+                                TextColor="#CCFFFFFF" />
 
-                    <Label
-                        x:Name="MensajeErrorLabel"
-                        TextColor="Red"
-                        IsVisible="False" />
+                            <Border
+                                BackgroundColor="#22FFFFFF"
+                                Stroke="#44FFFFFF"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 28"
+                                Padding="14,0">
 
-                    <Button
-                        x:Name="LoginButton"
-                        Text="Iniciar sesión"
-                        Clicked="OnLoginClicked" />
+                                <Entry
+                                    x:Name="NombreUsuarioEntry"
+                                    Placeholder="Introduce tu usuario"
+                                    PlaceholderColor="#99FFFFFF"
+                                    TextColor="White"
+                                    Keyboard="Text"
+                                    BackgroundColor="Transparent" />
+                            </Border>
+                        </VerticalStackLayout>
 
-                    <ActivityIndicator
-                        x:Name="CargandoIndicator"
-                        IsRunning="False"
-                        IsVisible="False" />
+                        <VerticalStackLayout Spacing="6">
+                            <Label
+                                Text="Contraseña"
+                                FontSize="13"
+                                FontAttributes="Bold"
+                                TextColor="#CCFFFFFF" />
 
-                </VerticalStackLayout>
+                            <Border
+                                BackgroundColor="#22FFFFFF"
+                                Stroke="#44FFFFFF"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 28"
+                                Padding="14,0">
 
-            </Frame>
+                                <Entry
+                                    x:Name="ClaveEntry"
+                                    Placeholder="Introduce tu contraseña"
+                                    PlaceholderColor="#99FFFFFF"
+                                    TextColor="White"
+                                    IsPassword="True"
+                                    BackgroundColor="Transparent" />
+                            </Border>
+                        </VerticalStackLayout>
 
-        </VerticalStackLayout>
+                        <Label
+                            x:Name="MensajeErrorLabel"
+                            TextColor="#FCA5A5"
+                            FontSize="13"
+                            IsVisible="False" />
+
+                        <Button
+                            x:Name="LoginButton"
+                            Text="Iniciar Sesión"
+                            Clicked="OnLoginClicked"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            HeightRequest="52"
+                            CornerRadius="26"
+                            BackgroundColor="#0DCAF0" />
+
+                        <ActivityIndicator
+                            x:Name="CargandoIndicator"
+                            IsRunning="False"
+                            IsVisible="False"
+                            Color="White" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>
