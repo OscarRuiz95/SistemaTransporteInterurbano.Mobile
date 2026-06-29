@@ -5,13 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Mis Reservas">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cerrar sesión"
-                     Order="Primary"
-                     Priority="0"
-                     Clicked="OnCerrarSesionClicked" />
-    </ContentPage.ToolbarItems>
-
     <Grid Padding="20" RowDefinitions="Auto,*">
 
         <VerticalStackLayout Spacing="4">
@@ -32,11 +25,9 @@
             SelectionChanged="OnReservaSeleccionada">
 
             <CollectionView.EmptyView>
-                <VerticalStackLayout Padding="20" Spacing="10">
-                    <Label Text="No tienes reservas registradas."
-                           HorizontalTextAlignment="Center"
-                           TextColor="Gray" />
-                </VerticalStackLayout>
+                <Label Text="No tienes reservas registradas."
+                       HorizontalTextAlignment="Center"
+                       TextColor="Gray" />
             </CollectionView.EmptyView>
 
             <CollectionView.ItemTemplate>
@@ -47,21 +38,19 @@
                            HasShadow="True">
 
                         <VerticalStackLayout Spacing="6">
-
-                            <Label Text="{Binding Ruta}"
+                            <Label Text="{Binding RutaTexto}"
                                    FontSize="18"
                                    FontAttributes="Bold" />
 
-                            <Label Text="{Binding Estado, StringFormat='Estado: {0}'}"
+                            <Label Text="{Binding EstadoTexto, StringFormat='Estado: {0}'}"
                                    FontSize="14"
                                    TextColor="Gray" />
 
                             <Label Text="{Binding NumeroAsiento, StringFormat='Asiento: {0}'}"
                                    FontSize="14" />
 
-                            <Label Text="{Binding FechaSalida, StringFormat='Salida: {0:dd/MM/yyyy HH:mm}'}"
+                            <Label Text="{Binding FechaSalidaTexto, StringFormat='Salida: {0:dd/MM/yyyy HH:mm}'}"
                                    FontSize="14" />
-
                         </VerticalStackLayout>
 
                     </Frame>

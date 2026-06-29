@@ -1,6 +1,6 @@
 ﻿namespace SistemaTransporteInterurbano.Mobile.Models;
 
-public class DetalleViajeDto
+public class ViajeDto
 {
     public int ViajeId { get; set; }
 
@@ -12,10 +12,6 @@ public class DetalleViajeDto
     public DateTime FechaLlegadaEstimada { get; set; }
 
     public int Estado { get; set; }
-
-    public int NumeroAsiento { get; set; }
-    public decimal PrecioBase { get; set; }
-    public decimal MontoPagado { get; set; }
 
     public string EstadoTexto => Estado switch
     {

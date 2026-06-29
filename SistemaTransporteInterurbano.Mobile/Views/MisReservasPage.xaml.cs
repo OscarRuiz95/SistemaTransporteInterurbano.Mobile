@@ -49,24 +49,6 @@ public partial class MisReservasPage : ContentPage
         }
     }
 
-    private async void OnCerrarSesionClicked(object sender, EventArgs e)
-    {
-        var confirmar = await DisplayAlert(
-            "Cerrar sesión",
-            "¿Estás seguro que deseas cerrar sesión?",
-            "Sí", "Cancelar");
-
-        if (!confirmar)
-            return;
-
-        Preferences.Remove("UsuarioId");
-        Preferences.Remove("PasajeroId");
-        Preferences.Remove("NombreUsuario");
-        Preferences.Remove("NombreCompleto");
-
-        await Shell.Current.GoToAsync("//LoginPage");
-    }
-
     private async void OnReservaSeleccionada(object sender, SelectionChangedEventArgs e)
     {
         var reserva = e.CurrentSelection.FirstOrDefault() as ReservaDto;

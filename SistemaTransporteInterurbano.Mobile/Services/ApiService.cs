@@ -119,9 +119,10 @@ public class ApiService
             throw new Exception("No se pudieron cargar las reservas.");
 
         var json = await response.Content.ReadAsStringAsync();
+      //  await Application.Current.MainPage.DisplayAlert("JSON reservas", json, "OK");//borrar mas adelante
         using var doc = JsonDocument.Parse(json);
         var root = doc.RootElement;
-
+        
         if (root.TryGetProperty("datos", out var datos))
         {
             return JsonSerializer.Deserialize<List<ReservaDto>>(

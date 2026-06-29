@@ -6,50 +6,68 @@
     Title="Detalle del Viaje">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="18">
 
-            <Label Text="Detalle del Viaje"
-                   FontSize="26"
-                   FontAttributes="Bold" />
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="20">
 
-            <Frame Padding="18"
-                   CornerRadius="16"
-                   HasShadow="True">
+            <Label
+                Text="Detalle del Viaje"
+                FontSize="28"
+                FontAttributes="Bold" />
 
-                <VerticalStackLayout Spacing="12">
+            <Frame
+                CornerRadius="18"
+                Padding="18"
+                HasShadow="True">
 
-                    <Label Text="Información del viaje"
-                           FontSize="20"
-                           FontAttributes="Bold" />
+                <VerticalStackLayout Spacing="10">
 
-                    <Label x:Name="RutaLabel" />
-                    <Label x:Name="PlacaLabel" />
-                    <Label x:Name="ChoferLabel" />
-                    <Label x:Name="FechaSalidaLabel" />
-                    <Label x:Name="FechaLlegadaLabel" />
-                    <Label x:Name="AsientoLabel" />
+                    <Label
+                        Text="Información del viaje"
+                        FontSize="22"
+                        FontAttributes="Bold" />
+
+                    <Label x:Name="RutaLabel"/>
+                    <Label x:Name="EstadoLabel"/>
+                    <Label x:Name="OrigenLabel"/>
+                    <Label x:Name="DestinoLabel"/>
+                    <Label x:Name="UnidadLabel"/>
+                    <Label x:Name="ChoferLabel"/>
+                    <Label x:Name="FechaSalidaLabel"/>
+                    <Label x:Name="FechaLlegadaLabel"/>
+                    <Label x:Name="AsientoLabel"/>
+                    
 
                 </VerticalStackLayout>
+
             </Frame>
 
-            <Frame Padding="18"
-                   CornerRadius="16"
-                   HasShadow="True">
+            <Frame
+                CornerRadius="18"
+                Padding="18"
+                HasShadow="True">
 
-                <VerticalStackLayout Spacing="12">
+                <VerticalStackLayout Spacing="10">
 
-                    <Label Text="Resumen de Pago"
-                           FontSize="20"
-                           FontAttributes="Bold" />
+                    <Label
+                        Text="Resumen de Pago"
+                        FontSize="22"
+                        FontAttributes="Bold" />
 
-                    <Label x:Name="PrecioBaseLabel" />
-                    <Label x:Name="MontoPagadoLabel"
-                           FontSize="18"
-                           FontAttributes="Bold" />
+                    <Label x:Name="PrecioBaseLabel"/>
+
+                    <Label
+                        x:Name="MontoPagadoLabel"
+                        FontSize="22"
+                        FontAttributes="Bold"/>
 
                 </VerticalStackLayout>
+
             </Frame>
 
         </VerticalStackLayout>
+
     </ScrollView>
+
 </ContentPage>
